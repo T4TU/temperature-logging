@@ -1,0 +1,41 @@
+.navbar {
+    border-bottom: 3px solid orange;
+}
+
+.navbar ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.navbar ul li {
+    display: inline-block;
+    padding-inline: 0.2em;
+}
+
+.navbar ul li:first-child {
+    padding-left: 0px;
+}
+
+.navbar ul li:last-child {
+    padding-right: 0px;
+}
+
+.navbar-link {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    color: rgb(189, 189, 189);
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    border-radius: 0.5em 0.5em 0px 0px;
+    font-weight: bold;
+}
+
+.navbar-link:hover {
+    color: white;
+    background-color: rgb(226, 147, 0);
+}
+
+.navbar-link-active, .navbar-link-active:hover {
+    color: white;
+    background-color: orange;
+}

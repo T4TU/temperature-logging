@@ -1,0 +1,24 @@
+{
+  "name": "temperature-logging-panel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "temperature-logging-panel",
+  "author": "Tarmo Markkanen",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "chart.js": "^4.3.0",
+    "gatsby": "^5.9.1",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

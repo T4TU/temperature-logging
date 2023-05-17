@@ -1,0 +1,11 @@
+.main-container {
+    width: 90%;
+    max-width: 1024px;
+    margin: 2em auto;
+}
+
+.content {
+    padding: 1.5em;
+    background-color: white;
+    border-radius: 0px 0px 0.5em 0.5em;
+}
