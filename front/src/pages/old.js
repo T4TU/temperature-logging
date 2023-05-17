@@ -1,7 +1,7 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import "../styles/global.css"
-import MainContainer from "../components/main-container.js"
+import * as React from "react";
+import { Link } from "gatsby";
+import "../styles/global.css";
+import MainContainer from "../components/main-container.js";
 
 const IndexPage = () => {
     return (
@@ -18,9 +18,9 @@ const IndexPage = () => {
                 </li>
             </ul>
         </MainContainer>
-    )
-}
+    );
+};
 
-export default IndexPage
+export default IndexPage;
 
-export const Head = () => <title>Temperature Log</title>
+export const Head = () => <title>Temperature Log</title>;

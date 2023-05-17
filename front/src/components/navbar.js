@@ -1,6 +1,6 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { navbar, navbarLink, navbarLinkActive } from "./navbar.module.css"
+import * as React from "react";
+import { Link } from "gatsby";
+import { navbar, navbarLink, navbarLinkActive } from "./navbar.module.css";
 
 const Navbar = ({ active }) => {
     return (
@@ -14,7 +14,7 @@ const Navbar = ({ active }) => {
                 </li>
             </ul>
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

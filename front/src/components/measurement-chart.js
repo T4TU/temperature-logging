@@ -1,11 +1,11 @@
-import * as React from "react"
-import Chart from "chart.js/auto"
-import { Line } from "react-chartjs-2"
+import * as React from "react";
+import Chart from "chart.js/auto";
+import { Line } from "react-chartjs-2";
 
 const MeasurementChart = ({ title, color, labels, values }) => {
     return (
         <div>
-            <Line 
+            <Line
                 data={{
                     labels: labels,
                     datasets: [
@@ -23,7 +23,7 @@ const MeasurementChart = ({ title, color, labels, values }) => {
             >
             </Line>
         </div>
-    )
-}
+    );
+};
 
-export default MeasurementChart
+export default MeasurementChart;

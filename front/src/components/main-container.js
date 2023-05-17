@@ -1,6 +1,6 @@
-import * as React from "react"
-import { mainContainer, content } from "./main-container.module.css"
-import Navbar from "./navbar.js"
+import * as React from "react";
+import { mainContainer, content } from "./main-container.module.css";
+import Navbar from "./navbar.js";
 
 const MainContainer = ({ active, children }) => {
     return (
@@ -10,7 +10,7 @@ const MainContainer = ({ active, children }) => {
                 {children}
             </main>
         </div>
-    )
-}
+    );
+};
 
-export default MainContainer
+export default MainContainer;
