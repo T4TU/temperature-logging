@@ -1,6 +1,6 @@
-export const parseContent = (content) => {
+export const parseMeasurementData = (csv) => {
     let data = [];
-    const lines = content.split("\n");
+    const lines = csv.split("\n");
     for (const line of lines) {
         const values = line.split(" ");
         const time = values[0];
@@ -15,6 +15,49 @@ export const parseContent = (content) => {
     return data;
 };
 
-export const formatDate = (date) => {
-    return date.replaceAll("-", ".");
-};
+function zeroPad(num, width) {
+    const initial = `${num}`
+    const initialWidth = initial.length;
+    return "0".repeat(width - initialWidth) + initial;
+}
+
+export class Date {
+
+    constructor(year, month, day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    asString() {
+        return `${this.year}-${zeroPad(this.month, 2)}-${zeroPad(this.day, 2)}`;
+    }
+
+    asFriendlyString() {
+        return `${this.day}.${this.month}.${this.year}`;
+    }
+
+    asReverseString() {
+        return `${zeroPad(this.day, 2)}-${zeroPad(this.month, 2)}-${this.year}`;
+    }
+
+    static fromString(dateString) {
+        if (!dateString) {
+            return null;
+        }
+        const e = dateString.split("-");
+        if (e.length !== 3) {
+            return null;
+        }
+        const year = parseInt(e[0], 10);
+        const month = parseInt(e[1], 10);
+        const day = parseInt(e[2], 10);
+        if (year.isNaN || month.isNaN || day.isNaN) {
+            return null;
+        }
+        if (year < 0 || year > 9999 || month < 1 || month > 12 || day < 1 || day > 31) {
+            return null;
+        }
+        return new Date(year, month, day);
+    }
+}

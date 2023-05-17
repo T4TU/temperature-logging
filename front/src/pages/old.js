@@ -8,13 +8,19 @@ const IndexPage = () => {
         <MainContainer active="old">
             <ul>
                 <li>
-                    <Link to="/viewday/?date=14-05-2023">14.5.2023</Link>
+                    <Link to="/viewday/?date=2023-5-14">14.5.2023</Link>
                 </li>
                 <li>
-                    <Link to="/viewday/?date=15-05-2023">15.5.2023</Link>
+                    <Link to="/viewday/?date=2023-5-15">15.5.2023</Link>
                 </li>
                 <li>
-                    <Link to="/viewday/?date=16-05-2023">16.5.2023</Link>
+                    <Link to="/viewday/?date=2023-5-16">16.5.2023</Link>
+                </li>
+                <li>
+                    <Link to="/viewday/?date=2023-5-17">17.5.2023</Link>
+                </li>
+                <li>
+                    <Link to="/viewday/?date=2023-5-18">18.5.2023</Link>
                 </li>
             </ul>
         </MainContainer>
