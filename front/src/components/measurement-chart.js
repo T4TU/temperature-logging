@@ -1,4 +1,5 @@
 import * as React from "react";
+import "../styles/global.css";
 import { CategoryScale } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { DataContext } from "./data-loader";

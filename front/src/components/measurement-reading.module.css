@@ -1,0 +1,19 @@
+.measurement-box {
+    padding: 2.25em;
+    text-align: center;
+    color: #505050;
+    border-radius: 0.75em;
+}
+
+.measurement-title {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.measurement-value {
+    font-size: 2.5em;
+}
+
+.measurement-unit {
+    font-size: 1.75em;
+}

@@ -24,7 +24,7 @@ function zeroPad(num, width) {
     return "0".repeat(width - initialWidth) + initial;
 }
 
-export class Date {
+export class LogDate {
 
     constructor(year, month, day) {
         this.year = year;
@@ -61,6 +61,11 @@ export class Date {
         if (year < 0 || year > 9999 || month < 1 || month > 12 || day < 1 || day > 31) {
             return null;
         }
-        return new Date(year, month, day);
+        return new LogDate(year, month, day);
+    }
+
+    static current() {
+        const currentDate = new Date();
+        return new LogDate(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
     }
 }

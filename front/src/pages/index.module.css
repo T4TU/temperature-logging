@@ -1,0 +1,14 @@
+.readings-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5em;
+    justify-items: stretch;
+}
+
+.index-section {
+    margin-top: 3em;
+}
+
+.index-section:first-child {
+    margin-top: 0em;
+}
