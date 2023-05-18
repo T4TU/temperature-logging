@@ -1,6 +1,6 @@
 import * as React from "react";
 import "../styles/global.css";
-import { readingsContainer, indexSection } from "./index.module.css";
+import { readingsContainer, indexSection } from "../styles/index.module.css";
 import { LogDate } from "../js/util.js";
 import MainContainer from "../components/main-container.js";
 import DataLoader from "../components/data-loader";

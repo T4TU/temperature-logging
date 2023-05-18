@@ -1,6 +1,6 @@
 import * as React from "react";
 import "../styles/global.css";
-import { measurementBox, measurementTitle, measurementValue, measurementUnit } from "./measurement-reading.module.css";
+import { measurementBox, measurementTitle, measurementValue, measurementUnit } from "../styles/measurement-reading.module.css";
 import { DataContext } from "./data-loader";
 
 const MeasurementReading = ({ title, value, unit, color }) => {

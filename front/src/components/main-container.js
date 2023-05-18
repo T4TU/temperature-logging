@@ -1,5 +1,5 @@
 import * as React from "react";
-import { mainContainer, content } from "./main-container.module.css";
+import { mainContainer, content } from "../styles/main-container.module.css";
 import Navbar from "./navbar.js";
 
 const MainContainer = ({ active, children }) => {
