@@ -1,0 +1,25 @@
+.chart {
+    padding: 0.5em;
+    text-align: center;
+    background-color: #fafafa;
+    border: 1px solid #cfcfcf;
+    border-radius: 0.25em;
+}
+
+.chart-title {
+    color: #505050;
+}
+
+.chart-loading-box {
+    aspect-ratio: 2 / 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-loading {
+    color: #cfcfcf;
+    font-weight: bold;
+    font-size: 1.5em;
+}

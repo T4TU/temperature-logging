@@ -6,7 +6,7 @@ export const DataContext = React.createContext(null);
 
 const DataLoader = ({ date, children }) => {
 
-    const [status, setStatus] = React.useState(null);
+    const [status, setStatus] = React.useState("loading");
     const [loadedData, setLoadedData] = React.useState();
 
     React.useEffect(() => {
@@ -33,14 +33,12 @@ const DataLoader = ({ date, children }) => {
         return <p>Invalid date.</p>;
     } else if (status === "error") {
         return <p>Could not load data.</p>;
-    } else if (status === "loaded") {
+    } else {
         return (
             <DataContext.Provider value={loadedData}>
                 {children}
             </DataContext.Provider>
         );
-    } else {
-        return <p>Loading...</p>;
     }
 };
 
