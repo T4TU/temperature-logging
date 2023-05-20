@@ -6,10 +6,19 @@ import MainContainer from "../components/main-container.js";
 import DataLoader from "../components/data-loader";
 import { TemperatureChart, HumidityChart } from "../components/measurement-chart.js";
 import { HumidityReading, TemperatureReading } from "../components/measurement-reading";
+import UpdateCounter from "../components/update-counter";
 
 const IndexPage = () => {
 
-    const date = LogDate.current();
+    const [date, setDate] = React.useState(LogDate.current());
+    const [lastUpdated, setLastUpdated] = React.useState(Date.now());
+
+    React.useEffect(() => {
+        setInterval(() => {
+            setDate(LogDate.current());
+            setLastUpdated(Date.now());
+        }, 60 * 1000);
+    }, []);
 
     return (
         <MainContainer active="today">
@@ -26,6 +35,9 @@ const IndexPage = () => {
                     <TemperatureChart />
                     <br />
                     <HumidityChart />
+                </section>
+                <section className={indexSection}>
+                    <UpdateCounter lastUpdated={lastUpdated} />
                 </section>
             </DataLoader>
         </MainContainer>

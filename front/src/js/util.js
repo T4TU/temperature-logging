@@ -6,7 +6,7 @@ export const parseMeasurementData = (csv) => {
         if (values.length !== 3) {
             continue;
         }
-        const time = values[0];
+        const time = values[0].slice(0, 5);
         const temperature = parseFloat(values[1]);
         const humidity = parseFloat(values[2]);
         data.push({
