@@ -40,10 +40,6 @@ export class LogDate {
         return `${this.day}.${this.month}.${this.year}`;
     }
 
-    asReverseString() {
-        return `${zeroPad(this.day, 2)}-${zeroPad(this.month, 2)}-${this.year}`;
-    }
-
     static fromString(dateString) {
         if (!dateString) {
             return null;

@@ -11,7 +11,7 @@ while True:
 	humidity, temperature = Adafruit_DHT.read_retry(SENSOR, PIN)
 	if humidity is not None and temperature is not None:
 		current_time = time.localtime()
-		date = time.strftime("%d-%m-%Y", current_time)
+		date = time.strftime("%Y-%m-%d", current_time)
 		timestamp = time.strftime("%H:%M:%S", current_time)
 		file = open(LOG_PATH + "/" + date + ".csv", "a")
 		log_entry = "{0} {1:.1f} {2:.1f}\n".format(timestamp, temperature, humidity)
