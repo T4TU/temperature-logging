@@ -14,7 +14,7 @@ const DataLoader = ({ date, children }) => {
             setStatus("nodate");
             return;
         }
-        fetch(`http://raspberrypi.local/logs/${encodeURIComponent(date.asString())}.csv`)
+        fetch(`${process.env.GATSBY_LOGS_PATH}${encodeURIComponent(date.asString())}.csv`)
             .then(res => res.text())
             .then(res => parseMeasurementData(res))
             .then(
