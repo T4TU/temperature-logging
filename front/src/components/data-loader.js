@@ -7,7 +7,7 @@ export const DataContext = React.createContext(null);
 const DataLoader = ({ date, children }) => {
 
     const [status, setStatus] = React.useState("loading");
-    const [loadedData, setLoadedData] = React.useState();
+    const [loadedData, setLoadedData] = React.useState(null);
 
     React.useEffect(() => {
         if (!date) {

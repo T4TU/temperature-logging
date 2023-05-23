@@ -7,8 +7,7 @@ import DataLoader from "../components/data-loader";
 
 const ViewDayPage = () => {
 
-    const params = new URLSearchParams(window.location.search);
-    const date = LogDate.fromString(params.get("date"));
+    const date = getDateFromURL();
 
     return (
         <MainContainer active="old">
@@ -16,7 +15,7 @@ const ViewDayPage = () => {
                 <h3 className="title">
                     LOGGED MEASUREMENT DATA FOR
                     <br />
-                    <strong style={{ color: "#505050", fontSize: "1.25em", lineHeight: "1.75em" }}>{date.asFriendlyString()}</strong>
+                    <strong style={{ color: "#505050", fontSize: "1.25em", lineHeight: "1.75em" }}>{date ? date.asFriendlyString() : "Loading..."}</strong>
                 </h3>
                 <TemperatureChart />
                 <br />
@@ -25,6 +24,15 @@ const ViewDayPage = () => {
         </MainContainer>
     );
 };
+
+function getDateFromURL() {
+    // Don't try to read date from URL on build, only when on client.
+    if (typeof window === "undefined") {
+        return null;
+    }
+    const params = new URLSearchParams(window.location.search);
+    return LogDate.fromString(params.get("date"));
+}
 
 export default ViewDayPage;
 
