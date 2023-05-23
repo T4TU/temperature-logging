@@ -1,20 +1,40 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { navigate } from "gatsby";
 import "../styles/global.css";
+import { dateSelect, dateInput, buttonInput } from "../styles/old.module.css";
 import MainContainer from "../components/main-container.js";
+import { LogDate } from "../js/util.js";
 
-const IndexPage = () => {
+const OldDataPage = () => {
+
+    const datePicker = React.useRef();
+
+    const go = () => {
+        navigate("/viewday/?date=" + datePicker.current.value);
+    }
+
     return (
         <MainContainer active="old">
-            <ul>
-                <li>
-                    <Link to="/viewday/?date=2023-5-22">22.5.2023</Link>
-                </li>
-            </ul>
+            <h3 className="title">VIEW DATA FOR SELECTED DATE</h3>
+            <div className={dateSelect}>
+                <input
+                    className={dateInput}
+                    type="date"
+                    defaultValue={LogDate.current().asString()}
+                    min={process.env.GATSBY_LOGGING_START_DATE}
+                    max={LogDate.current().asString()}
+                    ref={datePicker} />
+                <br />
+                <input
+                    className={buttonInput}
+                    type="button"
+                    onClick={go}
+                    value="VIEW DATA" />
+            </div>
         </MainContainer>
     );
 };
 
-export default IndexPage;
+export default OldDataPage;
 
 export const Head = () => <title>Temperature Log</title>;
