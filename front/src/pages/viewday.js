@@ -17,9 +17,9 @@ const ViewDayPage = () => {
                     <br />
                     <strong style={{ color: "#505050", fontSize: "1.25em", lineHeight: "1.75em" }}>{date ? date.asFriendlyString() : "Loading..."}</strong>
                 </h3>
-                <TemperatureChart />
+                <TemperatureChart date={date} />
                 <br />
-                <HumidityChart />
+                <HumidityChart date={date} />
             </DataLoader>
         </MainContainer>
     );

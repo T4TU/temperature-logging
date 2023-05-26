@@ -18,6 +18,27 @@ export const parseMeasurementData = (csv) => {
     return data;
 };
 
+export const parseExternalData = (xml) => {
+    const parser = new DOMParser();
+    const parsedXML = parser.parseFromString(xml, "text/xml");
+    const elements = parsedXML.getElementsByTagName("BsWfs:BsWfsElement");
+    return Array.from(elements).map(e => (
+        {
+            time: e.childNodes[3].innerHTML,
+            temperature: parseFloat(e.childNodes[7].innerHTML)
+        }
+    ));
+}
+
+export function beginningOfToday() {
+    const time = new Date();
+    time.setHours(0);
+    time.setMinutes(0);
+    time.setSeconds(0);
+    time.setMilliseconds(0);
+    return time.toISOString();
+}
+
 function zeroPad(num, width) {
     const initial = `${num}`
     const initialWidth = initial.length;

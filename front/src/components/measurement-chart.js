@@ -2,36 +2,62 @@ import * as React from "react";
 import "../styles/global.css";
 import { chart, chartTitle, chartLoadingBox, chartLoading } from "../styles/measurement-chart.module.css";
 import { Line } from "react-chartjs-2";
-import { DataContext } from "./data-loader";
-import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Tooltip } from "chart.js";
+import { DataContext } from "./data-loader.js";
+import { ExternalDataContext } from "./external-data-loader.js";
+import { Chart, TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from "chart.js";
+import "chartjs-adapter-date-fns";
+import { fi } from "date-fns/locale";
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
+Chart.register(TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const MeasurementChart = ({ title, color, labels, values }) => {
+export const MeasurementChart = ({ title, labels, legend, color, data }) => {
+    return <MultiMeasurementChart title={title} labels={labels} datasets={[{legend: legend, color: color, data: data}]} />;
+};
+
+export const MultiMeasurementChart = ({ title, datasets }) => {
+
+    const sets = datasets.map(dataset => (
+        {
+            label: dataset.legend,
+            data: dataset.data,
+            backgroundColor: dataset.color,
+            borderColor: dataset.color,
+            pointStyle: false,
+            tension: 0.1,
+            pointHitRadius: 20
+        }
+    ));
+
+    const options = {
+        scales: {
+            x: {
+                type: "time",
+                time: {
+                    unit: "hour",
+                    displayFormats: {
+                        hour: "HH",
+                        minute: "H:mm",
+                        datetime: "d.M.yyyy H:mm"
+                    }
+                }
+            }
+        },
+        adapter: {
+            date: {
+                locale: fi
+            }
+        }
+    }
+
     return (
         <div className={chart}>
             <span className={chartTitle}>{title}</span>
-            <Line
-                data={{
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: title,
-                            data: values,
-                            backgroundColor: color,
-                            borderColor: color,
-                            pointStyle: false,
-                            tension: 0.1,
-                            pointHitRadius: 20
-                        },
-                    ]
-                }}
-            />
+            <Line data={{datasets: sets}} options={options} />
         </div>
     );
 };
 
-const LoadingChart = ({ title}) => {
+const LoadingChart = ({ title }) => {
     return (
         <div className={chart}>
             <span className={chartTitle}>{title}</span>
@@ -42,20 +68,77 @@ const LoadingChart = ({ title}) => {
     );
 };
 
-export const TemperatureChart = () => {
+export const TemperatureChart = ({ date }) => {
+
     const data = React.useContext(DataContext);
+
     if (!data) {
-        return <LoadingChart title="Temperature (°C)"/>;
+        return <LoadingChart title="Temperature" />;
     }
-    return <MeasurementChart title="Temperature (°C)" color="orange" labels={data.map(e => e.time)} values={data.map(e => e.temperature)}/>;
+
+    return <MeasurementChart
+            title="Temperature"
+            legend="Temperature (°C)"
+            color="orange"
+            data={data.map(e => (
+                {
+                    x: `${date.asString()}T${e.time}`,
+                    y: e.temperature
+                }
+            ))}
+        />;
 };
 
-export const HumidityChart = () => {
+export const HumidityChart = ({ date }) => {
+
     const data = React.useContext(DataContext);
+
     if (!data) {
-        return <LoadingChart title="Humidity (%)"/>;
+        return <LoadingChart title="Humidity" />;
     }
-    return <MeasurementChart title="Humidity (%)" color="teal" labels={data.map(e => e.time)} values={data.map(e => e.humidity)}/>;
+
+    return <MeasurementChart
+            title="Humidity"
+            legend="Humidity (%)"
+            color="teal"
+            data={data.map(e => (
+                {
+                    x: `${date.asString()}T${e.time}`,
+                    y: e.humidity
+                }
+            ))}
+        />;
 };
 
-export default MeasurementChart;
+export const TemperatureWithExternalChart = ({ date }) => {
+
+    const data = React.useContext(DataContext);
+    const externalData = React.useContext(ExternalDataContext);
+
+    if (!data) {
+        return <LoadingChart title="Temperature" />;
+    }
+
+    const measurementDataset = {
+        legend: "Temperature (°C)",
+        data: data.map(e => (
+            {
+                x: `${date.asString()}T${e.time}`,
+                y: e.temperature
+            }
+        )),
+        color: "orange"
+    };
+
+    const externalDataset = {
+        legend: "Outside temperature (°C)",
+        data: externalData.map(e => (
+            {
+                x: e.time, y: e.temperature
+            }
+        )),
+        color: "#ffd3a2"
+    };
+
+    return <MultiMeasurementChart title="Temperature" labels={data.map(e => e.time)} datasets={[measurementDataset, externalDataset]} />;
+};
