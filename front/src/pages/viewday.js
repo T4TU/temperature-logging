@@ -3,7 +3,7 @@ import "../styles/global.css";
 import { LogDate } from "../js/util.js";
 import MainContainer from "../components/main-container.js";
 import { TemperatureChart, HumidityChart } from "../components/measurement-chart.js";
-import DataLoader from "../components/data-loader";
+import DataLoader from "../components/data-loader.js";
 
 const ViewDayPage = () => {
 

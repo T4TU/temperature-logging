@@ -3,11 +3,11 @@ import "../styles/global.css";
 import { readingsContainer, indexSection } from "../styles/index.module.css";
 import { LogDate } from "../js/util.js";
 import MainContainer from "../components/main-container.js";
-import DataLoader from "../components/data-loader";
+import DataLoader from "../components/data-loader.js";
 import { TemperatureWithExternalChart, HumidityChart } from "../components/measurement-chart.js";
-import { HumidityReading, TemperatureReading } from "../components/measurement-reading";
-import UpdateCounter from "../components/update-counter";
-import ExternalDataLoader from "../components/external-data-loader";
+import { HumidityReading, TemperatureReading } from "../components/measurement-reading.js";
+import UpdateCounter from "../components/update-counter.js";
+import ExternalDataLoader from "../components/external-data-loader.js";
 
 const IndexPage = () => {
 
